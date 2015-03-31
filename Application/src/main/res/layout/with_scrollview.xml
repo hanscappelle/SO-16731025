@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- after debugging using the trial and error method this scrollview was the culprit -->
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark"
+    android:padding="8dp"
+    >
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+
+        <!-- a first background image -->
+        <ImageView
+            android:id="@+id/image1"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="8dp"
+            android:src="@drawable/circle" />
+
+        <!-- a frame needed to position the text in the center of the image without having the
+            textview match the dimensions of the image (see below for super text alignment)
+            -->
+        <RelativeLayout
+            android:id="@+id/wrapper1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/image1"
+            android:layout_alignBottom="@+id/image1"
+            android:layout_alignTop="@+id/image1"
+            android:layout_alignLeft="@+id/image1"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:id="@+id/text1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Hello"
+                android:textColor="@color/black"
+                android:textSize="40sp"
+                android:fontFamily="sans-serif-thin"
+                android:singleLine="true" />
+
+        </RelativeLayout>
+
+        <!-- a second background image -->
+        <ImageView
+            android:id="@+id/image2"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="8dp"
+            android:src="@drawable/circle" />
+
+        <!-- a frame needed to position the text in the center of the image without having the
+            textview match the dimensions of the image (see below for super text alignment)
+            -->
+        <RelativeLayout
+            android:id="@+id/wrapper2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/image2"
+            android:layout_alignBottom="@+id/image2"
+            android:layout_alignTop="@+id/image2"
+            android:layout_alignLeft="@+id/image2"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+
+            <!-- whatever view, as long as the text isn't first, see stackoverflow QA:
+                http://stackoverflow.com/questions/16731025/ugly-bug-first-item-in-relativelayout-cannot-be-centered
+                -->
+            <View
+                android:id="@+id/line2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/blue"
+                android:layout_above="@+id/text2" />
+
+            <!-- the centered text -->
+            <TextView
+                android:id="@+id/text2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:paddingRight="32dp"
+                android:text="Text"
+                android:textColor="@color/black"
+                android:textSize="40sp"
+                android:fontFamily="sans-serif-thin"
+                android:singleLine="true" />
+
+            <!-- the super text aligned within the boundaries of the previous text -->
+            <TextView
+                android:id="@+id/text_sub2"
+                android:layout_width="32dp"
+                android:layout_height="wrap_content"
+                android:text="soup"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:fontFamily="sans-serif-light"
+                android:gravity="left"
+                android:layout_alignRight="@+id/text2"
+                android:layout_alignTop="@+id/text2"
+                android:layout_marginTop="6dp"
+                android:singleLine="true" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</ScrollView>
